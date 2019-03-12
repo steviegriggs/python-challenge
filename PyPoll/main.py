@@ -3,14 +3,6 @@ import csv
 
 csvpath = os.path.join('election_data.csv')
 
-def avg(list):
-    tot=0
-    for numb in list:
-        tot = tot + numb
-    return tot / len(list)
-
-
-
 with open(csvpath, newline='') as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
@@ -21,14 +13,6 @@ with open(csvpath, newline='') as csvfile:
     # Read the header row first 
     csv_header = next(poll_data)
 
-
-
-    ## WANT
-        #The total number of votes cast
-        #A complete list of candidates who received votes
-        #The percentage of votes each candidate won
-        #The total number of votes each candidate won
-        #The winner of the election based on popular vote.
 
    
     candidate_list = []
@@ -66,7 +50,8 @@ with open(csvpath, newline='') as csvfile:
     
     i = 0
     while i < len(candidate_list):   
-        p_print.append(f"{candidate_list[i]}: {round(prcnt[i],4)}% ({candidate_votes[i]})")
+        p_print.append("{}: {}% ({:,})".format(
+            candidate_list[i], round(prcnt[i],4), candidate_votes[i]))
         i += 1
     
     p_print.append("-------------------------")
@@ -80,5 +65,4 @@ with open(csvpath, newline='') as csvfile:
     
     
     
-
     
